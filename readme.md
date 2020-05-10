@@ -48,15 +48,17 @@ For everything else it will be saved as a `chunk_*.munged` that can be passed ba
 
 ## Building
 
+### vcpkg
+
 If you have Visual Studio 2019 all you need to do is use [vcpkg](https://github.com/Microsoft/vcpkg)
 to grab these libraries and you'll be good to go.
 
-* [gsl](https://github.com/Microsoft/gsl/)
-* [DirectXTex](https://github.com/Microsoft/DirectXTex/)
-* [glm](https://github.com/g-truc/glm)
-* [Threading Building Blocks](https://www.threadingbuildingblocks.org/)
-* [json](https://github.com/nlohmann/json/)
-* [{fmt}](https://github.com/fmtlib/fmt)
+* [gsl](https://github.com/Microsoft/gsl/)  (gsl)
+* [DirectXTex](https://github.com/Microsoft/DirectXTex/)  (directxtex)
+* [glm](https://github.com/g-truc/glm)  (glm)
+* [Threading Building Blocks](https://www.threadingbuildingblocks.org/)  ()
+* [json](https://github.com/nlohmann/json/)  (nlohmann-json)
+* [{fmt}](https://github.com/fmtlib/fmt)  (fmt)
 
 Otherwise things are going to be a bit more complicated if you're wanting to build it
 for a platform that isn't Windows. Most of the code is clean standard C++ though, save a
@@ -65,3 +67,20 @@ couple `#pragma` directives.
 If you for some reason do want to build it on Linux or something feel free to get in
 touch I am happy to help point out what bits of the codebase are non-portable and what
 could be done.
+
+### conan and CMake
+
+If you already have a python3 environment installed, get pip and install conan which is a binary package manager for c++.
+You also should have CMake installed. If you are on windows make sure that the executables are set to the PATH variable.
+
+> python -m pip install conan
+
+Locate the root directory of this repository (`...../swbf-unmunge/`) and run:
+
+> mkdir build
+> conan install . -if ./build/
+> cd build
+> cmake ..
+> make
+
+If everything worked without an error you should have a binary executable file with the name of the CMake project (SWBF-unmunge) in the build directory.
